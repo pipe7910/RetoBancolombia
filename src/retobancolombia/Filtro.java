@@ -14,15 +14,21 @@ public class Filtro {
     private String mesa;
     private String campo;
     private String valorString;
-    private int valorNum;
+    private double valorNum;
 
-    public Filtro(String mesa, String campo, String valorString, int valorNum) {
+    public Filtro(String mesa, String campo, String valorString, double valorNum) {
         this.mesa = mesa;
         this.campo = campo;
         this.valorString = valorString;
         this.valorNum = valorNum;
     }
 
+    public String getMesa() {
+        return mesa;
+    }
+    public void setMesa(String mesa) {
+        this.mesa = mesa;
+    }
     public String getCampo() {
         return campo;
     }
@@ -35,15 +41,10 @@ public class Filtro {
     public void setValorString(String valorString) {
         this.valorString = valorString;
     }
-    public int getValorNum() {
+    public double getValorNum() {
         return valorNum;
     }
-    public void setValorInt(int valorNum) {
+    public void setValorInt(double valorNum) {
         this.valorNum = valorNum;
-    }
-
-    @Override
-    public String toString() {
-        return "Filtro [campo=" + campo + ", valor=" + valor + "]";
     }
 }
