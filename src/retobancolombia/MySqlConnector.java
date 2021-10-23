@@ -47,7 +47,12 @@ public class MySqlConnector {
             else
                 whereStatement.append(" ?,");
         }
-        try (PreparedStatement stmt = con.prepareStatement("SELECT * FROM client" + whereStatement)) {
+        try (PreparedStatement stmt = con.prepareStatement(
+                "SELECT c.code. c.male, c.company, c.encrypt, SUM(a.balance) AS balance"
+                + " FROM client c join account a ON c.id = a.client_id WHERE " 
+                + whereStatement + 
+                " GROUP BY c.code. c.male, c.company, c.encrypt "
+                + "ORDER BY SUM(a.balance), c.code")) {
             for(int j=0; j < filtros.size(); j++){
                 if(filtros.get(j).getValorNum() == -99)
                     sentencia.setString(j+1, filtros.get(j).getValorString());
