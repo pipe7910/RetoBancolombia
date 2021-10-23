@@ -100,11 +100,17 @@ public class MySqlConnector {
                 personas.add(persona);
                 System.out.println (persona);
             }
-
-            for(int i = 0; i < personas.size(); i++ ){
-                for(int j = i+1; j < personas.size(); j++){
-                    if(personas.get(i).getCompany().equals(personas.get(j).getCompany()))
-                        personas.remove(j);
+            if(personas.size() == 0){
+                personas.add(new Persona("CANCELADA", 0, "",0,new Double(0)));
+            }else if(personas.size() < 4){
+                personas = new ArrayList<Persona>();
+                personas.add(new Persona("CANCELADA", 0, "",0,new Double(0)));
+            }else{
+                for(int i = 0; i < personas.size(); i++ ){
+                    for(int j = i+1; j < personas.size(); j++){
+                        if(personas.get(i).getCompany().equals(personas.get(j).getCompany()))
+                            personas.remove(j);
+                    }
                 }
             }
 
