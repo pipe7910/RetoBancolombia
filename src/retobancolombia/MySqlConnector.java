@@ -86,7 +86,7 @@ public class MySqlConnector {
             }
             
             System.out.println (filtros.get(0).getMesa());
-
+            
             ResultSet rs = stmt.executeQuery();
             ArrayList<Persona> personas = new ArrayList<>();
             while (rs.next()){
@@ -136,9 +136,9 @@ public class MySqlConnector {
                 }else{
                     StringBuilder salidaMesa = new StringBuilder();
                     for(int i=0; i < personas.size() && i < 8; i++){
-                        if(i+1 == personas.size() || i+1 == 8)
+                        if(i+1 == personas.size() || i+1 == 8){
                             salidaMesa.append(personas.get(i).getCode());
-                        else{
+                        }else{
                             salidaMesa.append(personas.get(i).getCode());
                             salidaMesa.append(",");
                         }
