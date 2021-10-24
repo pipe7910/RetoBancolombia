@@ -98,13 +98,9 @@ public class MySqlConnector {
                     persona = new Persona(rs.getString("code"), rs.getInt("male"), 
                             rs.getString("company"), rs.getInt("encrypt"), rs.getDouble("balance"));
                 personas.add(persona);
-                System.out.println (persona);
             }
-            if(personas.size() == 0){
-                personas.add(new Persona("CANCELADA", 0, "",0,new Double(0)));
-            }else if(personas.size() < 4){
-                personas = new ArrayList<Persona>();
-                personas.add(new Persona("CANCELADA", 0, "",0,new Double(0)));
+            if(personas.size() < 4){
+                System.out.println ("CANCELADA");
             }else{
                 for(int i = 0; i < personas.size(); i++ ){
                     for(int j = i+1; j < personas.size(); j++){
@@ -112,8 +108,46 @@ public class MySqlConnector {
                             personas.remove(j);
                     }
                 }
-            }
+                boolean band_hom_muj = false;
+                while(band_hom_muj == false){
+                    int hombres = 0;
+                    int mujeres = 0;
+                    int posUltHombre = 0;
+                    int posUltMujer = 0;
+                    for(int i = 0; i < personas.size() && i < 8; i++){
+                        if(personas.get(i).getMale() == 1){
+                            hombres++;
+                            posUltHombre = i;
+                        }else{
+                            mujeres++;
+                            posUltMujer = i;
+                        }
+                    }
+                    if(hombres == mujeres){
+                        band_hom_muj = true;
+                    }else if(hombres > mujeres){
+                        personas.remove(posUltHombre);
+                    }else{
+                        personas.remove(posUltMujer);
+                    }
+                }
+                if(personas.size() < 4){
+                    System.out.println ("CANCELADA");
+                }else{
+                    StringBuilder salidaMesa = new StringBuilder();
+                    for(int i=0; i < personas.size() && i < 8; i++){
+                        if(i+1 == personas.size() || i+1 == 8)
+                            salidaMesa.append(personas.get(i).getCode());
+                        else{
+                            salidaMesa.append(personas.get(i).getCode());
+                            salidaMesa.append(",");
+                        }
+                    }
+                    System.out.println (salidaMesa.toString());
 
+                }
+                
+            }
         } catch (SQLException sqle) { 
           System.out.println("Error en la ejecución:" 
             + sqle.getErrorCode() + " " + sqle.getMessage());    
