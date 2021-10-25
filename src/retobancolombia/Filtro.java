@@ -1,34 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package retobancolombia;
 
 /**
  *
  * @author juan.montoya
+ * Clase Filtro que tiene los atributos de los filtros que tendrán las mesas
+ * Tiene de atributos campo, valorString, valorNum
+ * Se crean getter y setters. Se crea constructor con todos los atributos
  */
 public class Filtro {
-    private String mesa;
     private String campo;
     private String valorString;
     private double valorNum;
 
-    public Filtro(String mesa, String campo, String valorString, double valorNum) {
-        this.mesa = mesa;
+    public Filtro(String campo, String valorString, double valorNum) {
         this.campo = campo;
         this.valorString = valorString;
         this.valorNum = valorNum;
     }
 
-    public String getMesa() {
-        return mesa;
-    }
-    public void setMesa(String mesa) {
-        this.mesa = mesa;
-    }
     public String getCampo() {
         return campo;
     }

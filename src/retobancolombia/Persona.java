@@ -3,6 +3,10 @@ package retobancolombia;
 /**
  *
  * @author juan.montoya
+ * Clase Persona que tiene los atributos de los clientes
+ * Tiene de atributos code, male, company, encrypt, balance
+ * Se crean getter y setters. Se crea constructor con todos los atributos.
+ * Se crea método toString.
  */
 public class Persona {
     private String code;
